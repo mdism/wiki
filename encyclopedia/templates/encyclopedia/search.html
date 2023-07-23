@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Encyclopedia
+{% endblock %}
+
+{% block body %}
+<h1>Search Results</h1>
+
+<ul>
+    {% for entry in entries %}
+    <li> <a href="{% url 'content' entity_name=entry %}"> {{ entry }}</a></li>
+    {% empty %}
+    <li>No related entry found</li>
+    <hr>
+    <img src="https://picsum.photos/1500/700/" alt="https://picsum.photos/536/534/">
+
+    {% endfor %}
+</ul>
+
+{% endblock %}

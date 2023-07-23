@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Encyclopedia
+{% endblock %}
+
+{% block body %}
+<h1>Add New Page to Encyclopedia </h1>
+
+<form action="{% url 'new_page' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" id="title" name="title" placeholder="title"><br>
+    <textarea name="content" id="entry" cols="30" rows="10" placeholder="entries in Markdown"></textarea><br>
+    <br>
+    {% if "Error" in message %}
+    <label for="message" style="color: rgb(110, 0, 0);">{{message}}</label>
+    {% elif message is not None %}
+    <label for="message" style="color: rgb(0, 110, 0);">{{message}}</label>
+    {% else %}
+    <label for="message" hidden></label>
+    {% endif %}
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+{% endblock %}
